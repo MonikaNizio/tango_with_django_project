@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rango.forms import CategoryForm
 from rango.forms import PageForm
+
+# Import the Category model
 from rango.models import Category
 from rango.models import Page
 
@@ -15,9 +17,10 @@ def index(request):
     return render(request, 'rango/index.html', context_dict)
 
 def about(request):
-    context_dict = {'boldmessage': 'This tutorial has been put together by Monika.'}
 
-    return render(request, 'rango/about.html', context=context_dict)
+    print(request.method)
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 def show_category(request, category_name_slug):
     context_dict = {}
