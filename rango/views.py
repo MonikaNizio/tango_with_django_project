@@ -1,18 +1,18 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
 from datetime import datetime
-from django.http import HttpResponse
-from rango.forms import CategoryForm
-from rango.forms import PageForm
-from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-# Import the Category model
 from rango.models import Category
 from rango.models import Page
+from rango.forms import CategoryForm
+from rango.forms import PageForm
+from rango.forms import UserForm, UserProfileForm
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -36,10 +36,10 @@ def visitor_cookie_handler(request):
 
 def index(request):
 
-    request.session.set_test_cookie()
+    #request.session.set_test_cookie()
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
-    context_dict = {'categories': category_list, 'pages': page_list}
+    context_dict = {'categories': category_list, 'pages': page_list,}
 
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -72,6 +72,7 @@ def show_category(request, category_name_slug):
 
     return render(request, 'rango/category.html', context_dict)
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -85,6 +86,7 @@ def add_category(request):
 
     return render(request, 'rango/add_category.html', {'form': form})
 
+@login_required
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)

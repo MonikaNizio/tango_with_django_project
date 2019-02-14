@@ -12,27 +12,27 @@ def populate():
         {"title": "Official Python Tutorial",
         "url":"http://docs.python.org/2/tutorial/", "views": 15},
         {"title": "How to Think like a Computer Scientist",
-        "url":"http://www.greenteapress.com/thinkpython/", "views": 30},
+        "url":"http://www.greenteapress.com/thinkpython/", "views": 25},
         {"title": "Learn Python in 10 Minutes",
-        "url":"http://www.korokithakis.net/tutorials/python/", "views": 40} ]
+        "url":"http://www.korokithakis.net/tutorials/python/", "views": 15} ]
 
     django_pages = [
         {"title": "Official Django Tutorial",
-        "url":"https://docs.djangoproject.com/en/1.9/intro/tutorial01/", "views": 60},
+        "url":"https://docs.djangoproject.com/en/1.9/intro/tutorial01/", "views": 10},
         {"title": "Django Rocks",
-        "url":"http://www.djangorocks.com/", "views": 5},
+        "url":"http://www.djangorocks.com/", "views": 12},
         {"title": "How to Tango with Django",
-        "url":"http://www.tangowithdjango.com/", "views": 30} ]
+        "url":"http://www.tangowithdjango.com/", "views": 5} ]
 
     other_pages = [
         {"title": "Bottle",
         "url":"http://bottlepy.org/docs/dev/", "views": 10},
         {"title": "Flask",
-        "url":"http://flask.pocoo.org", "views": 10} ]
+        "url":"http://flask.pocoo.org", "views": 20} ]
 
-    cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64},
-            "Django": {"pages": django_pages, "views": 64, "likes": 32},
-            "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16} }
+    cats = {"Python": {"pages": python_pages, "views": 34, "likes": 26},
+            "Django": {"pages": django_pages, "views": 65, "likes": 76},
+            "Other Frameworks": {"pages": other_pages, "views": 24, "likes": 54} }
 
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data["views"], cat_data["likes"])
@@ -57,7 +57,7 @@ def add_cat(name, views=0, likes=0):
     c.save()
     return c
 
-# Start execution here!
+# Start execution here
 if __name__ == '__main__':
     print("Starting Rango population script...")
-populate()
+    populate()
